@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Form } from "../components/Form/Form.component";
 import { Header } from "../components/Header/Header.component";
 import { TodoList } from "../components/TodoList/TodoList.component";
@@ -24,6 +26,18 @@ export const TodoListForm = () => {
     },
   ]);
 
+  const notify = (text: string) =>
+    toast.warn(text, {
+      position: "bottom-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const createNewTodo = (text: string) => {
     const newTodo: TodoItem = {
       id: todos.length,
@@ -43,11 +57,13 @@ export const TodoListForm = () => {
     });
 
     setTodos(newTodos);
+    notify("Задача обновлена!");
   };
 
   const deleteTodo = (todoItem: TodoItem) => {
     const newTodos = todos.filter((item) => item.id !== todoItem.id);
     setTodos(newTodos);
+    notify("Задача удалена!");
   };
 
   return (
@@ -58,6 +74,18 @@ export const TodoListForm = () => {
         todos={todos}
         completeTodo={completeTodo}
         deleteTodo={deleteTodo}
+      />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
       />
     </>
   );
