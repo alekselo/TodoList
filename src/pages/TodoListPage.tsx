@@ -1,29 +1,17 @@
-import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form } from "../components/Form/Form.component";
 import { TodoList } from "../components/TodoList/TodoList.component";
 import { TodoItem } from "../models/TodoItem";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { completeAction, createAction, deleteAction } from "../redux/todoList";
 
-export const TodoListForm = () => {
-  const [todos, setTodos] = useState<TodoItem[]>([
-    { text: "Первая задача", id: 0, isDone: false },
-    {
-      text: "Вторая задача",
-      id: 1,
-      isDone: true,
-    },
-    {
-      text: "Выпить чай",
-      id: 2,
-      isDone: false,
-    },
-    {
-      text: "Выпить яд",
-      id: 3,
-      isDone: false,
-    },
-  ]);
+export const TodoListPage = () => {
+  const todoList = useSelector((state: RootState) => {
+    return state.todoList.todos;
+  });
+  const dispatch = useDispatch();
 
   const notify = (text: string) =>
     toast.warn(text, {
@@ -38,30 +26,16 @@ export const TodoListForm = () => {
     });
 
   const createNewTodo = (text: string) => {
-    const newTodo: TodoItem = {
-      id: todos.length,
-      text: text,
-      isDone: false,
-    };
-
-    setTodos([...todos, newTodo]);
+    dispatch(createAction(text));
   };
 
   const completeTodo = (todoItem: TodoItem) => {
-    const newTodos = todos.map((item) => {
-      if (item.id === todoItem.id) {
-        item.isDone = !todoItem.isDone;
-      }
-      return item;
-    });
-
-    setTodos(newTodos);
+    dispatch(completeAction(todoItem));
     notify("Задача обновлена!");
   };
 
   const deleteTodo = (todoItem: TodoItem) => {
-    const newTodos = todos.filter((item) => item.id !== todoItem.id);
-    setTodos(newTodos);
+    dispatch(deleteAction(todoItem));
     notify("Задача удалена!");
   };
 
@@ -69,7 +43,7 @@ export const TodoListForm = () => {
     <>
       <Form createNewTodo={createNewTodo} />
       <TodoList
-        todos={todos}
+        todos={todoList}
         completeTodo={completeTodo}
         deleteTodo={deleteTodo}
       />
@@ -78,11 +52,7 @@ export const TodoListForm = () => {
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick
         rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
         theme="light"
       />
     </>

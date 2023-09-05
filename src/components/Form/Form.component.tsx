@@ -19,7 +19,9 @@ export const Form = (props: { createNewTodo: Function }) => {
       theme: "light",
     });
 
-  const formSubmit = () => {
+  const formSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+
     if (text) {
       props.createNewTodo(text);
       setText("");

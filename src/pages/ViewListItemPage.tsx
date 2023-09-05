@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { TodoItem } from "../models/TodoItem";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { TodoItem } from "../models/TodoItem";
 
-type Props = {
-  todos: TodoItem[];
-};
-
-export const TodoDescription = ({ todos }: Props) => {
+export const ViewListItemPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const todoList = useSelector((state: RootState) => {
+    return state.todoList.todos;
+  });
   const [todo, setTodo] = useState<TodoItem>();
 
   const handleClick = () => {
@@ -16,15 +17,14 @@ export const TodoDescription = ({ todos }: Props) => {
   };
 
   useEffect(() => {
-    const searchTodo = todos.find((todo) => String(todo.id) === id);
-    console.log(searchTodo);
+    const searchTodo = todoList.find((todo) => String(todo.id) === id);
 
     if (searchTodo) {
       setTodo(searchTodo);
     } else {
       navigate("/404");
     }
-  }, [todos, navigate, id]);
+  }, [todoList, navigate, id]);
 
   return (
     <div className="container">

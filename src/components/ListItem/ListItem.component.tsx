@@ -8,6 +8,7 @@ export const ListItem = ({ todo }: { todo: TodoItem }) => {
     <>
       <NavLink
         className={cn(styles.link, todo.isDone ? styles.done : styles.notDone)}
+        rel="noreferrer"
         to={`/list/${todo.id}`}
       >
         {todo.text}
