@@ -29,14 +29,22 @@ export const TodoListPage = () => {
     dispatch(createAction(text));
   };
 
-  const completeTodo = (todoItem: TodoItem) => {
-    dispatch(completeAction(todoItem));
-    notify("Задача обновлена!");
+  const completeTodo = async (todoItem: TodoItem) => {
+    try {
+      await dispatch(completeAction(todoItem));
+      notify("Задача обновлена!");
+    } catch (error) {
+      console.error("Ошибка при создании задачи:", error);
+    }
   };
 
-  const deleteTodo = (todoItem: TodoItem) => {
-    dispatch(deleteAction(todoItem));
-    notify("Задача удалена!");
+  const deleteTodo = async (todoItem: TodoItem) => {
+    try {
+      await dispatch(deleteAction(todoItem));
+      notify("Задача удалена!");
+    } catch (error) {
+      console.error("Ошибка при удалении задачи:", error);
+    }
   };
 
   return (

@@ -1,11 +1,21 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
 
 import styles from "./styles.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { setText } from "../../redux/form";
+import { RootState } from "../../store/store";
 
-export const Form = (props: { createNewTodo: Function }) => {
-  const [text, setText] = useState("");
+interface FormProps {
+  createNewTodo: (text: string) => void;
+}
+
+export const Form: React.FC<FormProps> = ({ createNewTodo }) => {
+  const text = useSelector((state: RootState) => {
+    return state.form.text;
+  });
+
+  const dispatch = useDispatch();
 
   const notify = () =>
     toast.success("Задача создана!", {
@@ -19,13 +29,18 @@ export const Form = (props: { createNewTodo: Function }) => {
       theme: "light",
     });
 
-  const formSubmit = (event: React.SyntheticEvent) => {
+  const formSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
     if (text) {
-      props.createNewTodo(text);
-      setText("");
-      notify();
+      try {
+        await createNewTodo(text);
+        dispatch(setText(text));
+        dispatch(setText(""));
+        notify();
+      } catch (error) {
+        console.error("Ошибка при создании задачи:", error);
+      }
     }
   };
 
@@ -37,7 +52,7 @@ export const Form = (props: { createNewTodo: Function }) => {
             <input
               type="text"
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={(e) => dispatch(setText(e.target.value))}
             />
             <button></button>
           </label>
