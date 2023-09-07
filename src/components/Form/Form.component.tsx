@@ -12,7 +12,7 @@ import {
   Wrapper,
 } from "./Form.styled";
 
-import PlusIcon from "../../assets/images/plus.png";
+import { IconPlus } from "../../assets/images/";
 
 interface FormProps {
   createNewTodo: (text: string) => void;
@@ -62,7 +62,7 @@ export const Form: React.FC<FormProps> = ({ createNewTodo }) => {
               value={text}
               onChange={(e) => dispatch(setText(e.target.value))}
             />
-            <Button icon={PlusIcon} />
+            <Button icon={IconPlus} />
           </Label>
         </FormBlock>
       </Wrapper>

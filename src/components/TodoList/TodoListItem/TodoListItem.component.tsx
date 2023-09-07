@@ -1,8 +1,6 @@
 import { TodoItem } from "../../../models/TodoItem";
 import { Button, ButtonWrapper, ItemWrapper } from "./TodoListItem.styled";
-import trachIcon from "../../../assets/images/trash.png";
-import checkIcon from "../../../assets/images/check.png";
-import uncheckIcon from "../../../assets/images/uncheck.png";
+import { IconCheck, IconTrash, IconUncheck } from "../../../assets/images";
 
 export const TodoListItem = (props: {
   item: TodoItem;
@@ -14,11 +12,11 @@ export const TodoListItem = (props: {
       <span>{props.item.text}</span>
       <ButtonWrapper>
         <Button
-          icon={trachIcon}
+          icon={IconTrash}
           onClick={() => props.deleteTodo(props.item)}
         ></Button>
         <Button
-          icon={props.item.isDone ? checkIcon : uncheckIcon}
+          icon={props.item.isDone ? IconCheck : IconUncheck}
           onClick={() => props.completeTodo(props.item)}
         ></Button>
       </ButtonWrapper>
