@@ -1,6 +1,8 @@
-import cn from "classnames";
-import styles from "./styles.module.scss";
 import { TodoItem } from "../../../models/TodoItem";
+import { Button, ButtonWrapper, ItemWrapper } from "./TodoListItem.styled";
+import trachIcon from "../../../assets/images/trash.png";
+import checkIcon from "../../../assets/images/check.png";
+import uncheckIcon from "../../../assets/images/uncheck.png";
 
 export const TodoListItem = (props: {
   item: TodoItem;
@@ -8,21 +10,18 @@ export const TodoListItem = (props: {
   deleteTodo: Function;
 }) => {
   return (
-    <li className={styles.itemWrapper}>
+    <ItemWrapper>
       <span>{props.item.text}</span>
-      <div className={styles.itemButtons}>
-        <button
-          className={cn(styles.btn, styles.btnTrash)}
+      <ButtonWrapper>
+        <Button
+          icon={trachIcon}
           onClick={() => props.deleteTodo(props.item)}
-        ></button>
-        <button
-          className={cn(
-            styles.btn,
-            props.item.isDone ? styles.btnCheck : styles.btnUncheck
-          )}
+        ></Button>
+        <Button
+          icon={props.item.isDone ? checkIcon : uncheckIcon}
           onClick={() => props.completeTodo(props.item)}
-        ></button>
-      </div>
-    </li>
+        ></Button>
+      </ButtonWrapper>
+    </ItemWrapper>
   );
 };

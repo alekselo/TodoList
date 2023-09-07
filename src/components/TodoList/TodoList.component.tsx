@@ -1,7 +1,11 @@
 import { TodoListItem } from "./TodoListItem/TodoListItem.component";
-import cn from "classnames";
-import styles from "./styles.module.scss";
 import { TodoItem } from "../../models/TodoItem";
+import {
+  ItemMessage,
+  TodoContainer,
+  TodoListCompleted,
+  TodoListFailed,
+} from "./TodoList.styled";
 
 export const TodoList = (props: {
   todos: TodoItem[];
@@ -10,13 +14,13 @@ export const TodoList = (props: {
 }) => {
   const getNoTasksMessage = (listType: string) => {
     return listType === "checked" ? (
-      <p className={styles.noItemMessage}>Нет невыполненных задач</p>
+      <ItemMessage>Нет выполненных задач</ItemMessage>
     ) : (
-      <p className={styles.noItemMessage}>Нет выполненных задач</p>
+      <ItemMessage>Нет задач на выполнение</ItemMessage>
     );
   };
   const checkedList = () => {
-    const uncheckedTodos = props.todos.filter((item) => !item.isDone);
+    const uncheckedTodos = props.todos.filter((item) => item.isDone);
 
     if (uncheckedTodos.length === 0) {
       return getNoTasksMessage("checked");
@@ -33,7 +37,7 @@ export const TodoList = (props: {
   };
 
   const unCheckedList = () => {
-    const completedTodos = props.todos.filter((item) => item.isDone);
+    const completedTodos = props.todos.filter((item) => !item.isDone);
 
     if (completedTodos.length === 0) {
       return getNoTasksMessage("unchecked");
@@ -50,11 +54,9 @@ export const TodoList = (props: {
   };
 
   return (
-    <div className={styles.todoContainer}>
-      <ul className={cn(styles.todoList, styles.failed)}>{checkedList()}</ul>
-      <ul className={cn(styles.todoList, styles.completed)}>
-        {unCheckedList()}
-      </ul>
-    </div>
+    <TodoContainer>
+      <TodoListFailed>{unCheckedList()}</TodoListFailed>
+      <TodoListCompleted>{checkedList()}</TodoListCompleted>
+    </TodoContainer>
   );
 };

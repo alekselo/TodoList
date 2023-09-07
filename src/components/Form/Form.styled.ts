@@ -1,4 +1,6 @@
-.formWrapper {
+import styled from "styled-components";
+
+export const Wrapper = styled.div`
     width: 100%;
     height: 80px;
 
@@ -10,9 +12,13 @@
     box-shadow: 0 2px 4px rgba(44, 62, 80, 0.15);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-}
+`
 
-.formWrapper form input {
+export const Form = styled.form``;
+
+export const Label = styled.label``;
+
+export const Input = styled.input`   
     width: 100%;
     height: 50px;
     color: #fff;
@@ -25,20 +31,21 @@
     border: 0;
     box-shadow: none;
     outline: none;
-}
-
-.formWrapper form button {
+`
+export const Button = styled.button<{icon: string}>`
     width: 50px;
     height: 50px;
-    background: transparent url(../../assets/images/plus.png) no-repeat center/cover;
+    background: transparent url(${(props) => props.icon}) no-repeat center/cover;
     position: absolute;
     top: 15px;
     right: 15px;
     z-index: 2;
-
     border-radius: 25px;
     border: 0;
     box-shadow: none;
     outline: none;
     cursor: pointer;
-}
+
+`
+
+

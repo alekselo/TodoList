@@ -1,10 +1,18 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import styles from "./styles.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setText } from "../../redux/form";
 import { RootState } from "../../store/store";
+import {
+  Button,
+  Form as FormBlock,
+  Input,
+  Label,
+  Wrapper,
+} from "./Form.styled";
+
+import PlusIcon from "../../assets/images/plus.png";
 
 interface FormProps {
   createNewTodo: (text: string) => void;
@@ -46,18 +54,18 @@ export const Form: React.FC<FormProps> = ({ createNewTodo }) => {
 
   return (
     <>
-      <div className={styles.formWrapper}>
-        <form action="#" onSubmit={formSubmit}>
-          <label>
-            <input
+      <Wrapper>
+        <FormBlock action="#" onSubmit={formSubmit}>
+          <Label>
+            <Input
               type="text"
               value={text}
               onChange={(e) => dispatch(setText(e.target.value))}
             />
-            <button></button>
-          </label>
-        </form>
-      </div>
+            <Button icon={PlusIcon} />
+          </Label>
+        </FormBlock>
+      </Wrapper>
       <ToastContainer
         position="bottom-left"
         autoClose={2000}

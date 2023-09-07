@@ -1,4 +1,7 @@
-.itemWrapper  {
+import { styled } from "styled-components";
+
+
+export const ItemWrapper = styled.li`
     width: 100%;
     min-height: 50px;
     font-size: 14px;
@@ -16,25 +19,25 @@
     margin: 0 0 10px 0;
     padding: 14px;
     word-break: break-word;
-}
 
-.itemWrapper :last-child {
-    margin: 0;
-}
+    &:last-child {
+        margin-bottom: 0;
+    }
+    `  
 
-.itemButtons {
+export const ButtonWrapper = styled.div`
     width: 100px;
     height: 50px;
     display: flex;
-
     position: absolute;
     top: 0;
     right: 0;
-}
+    `
 
-.btn {
+export const Button = styled.button<{icon: string}>`
     width: 50px;
     height: 50px;
+    background-image: url(${(props) => props.icon});
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
@@ -43,16 +46,6 @@
     box-shadow: none;
     outline: none;
     cursor: pointer;
-}
+    `
 
-.btnTrash {
-    background-image: url(../../../assets/images/trash.png);
-}
 
-.btnCheck{
-    background-image: url(../../../assets/images/check.png);
-}
-
-.btnUncheck {
-    background-image: url(../../../assets/images/uncheck.png);
-}
