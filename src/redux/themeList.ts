@@ -3,11 +3,13 @@ import { Theme } from '../models/Themes'
 import { themes } from '../styles/themes'
 
 export interface ThemeState {
-    theme: Theme
+    theme: Theme,
+    status: boolean,
 }
 
 const initialState: ThemeState = {
-    theme: themes['light']
+    theme: themes['light'],
+    status: true,
 }
 
 export const themeSlice = createSlice({
@@ -15,7 +17,8 @@ export const themeSlice = createSlice({
     initialState,
     reducers: {
         toggleThemeAction: (state) => {
-            state.theme = state.theme.name === 'light' ? themes['dark'] : themes['light']
+            state.theme = state.theme.name === 'light' ? themes['dark'] : themes['light'];
+            state.status = state.theme.name === 'light' ? true : false;
         },
     },
 })
