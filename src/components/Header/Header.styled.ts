@@ -36,6 +36,8 @@ export const Link = styled(NavLink)`
     }
 `
 export const ButtonContainer = styled.div`
+    display: flex;
+    align-items: center;
     position: absolute;
     right: 30px;
 `;

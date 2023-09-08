@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
 import {
   Link,
   Header as H,
@@ -9,6 +10,7 @@ import {
 import { toggleThemeAction } from "../../redux/themeList";
 import { ToggleButton } from "../ToggleButton/ToggleButton.component";
 import { RootState } from "../../store/store";
+import CustomIcon from "../CustomIcon/CustomIcon.component";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -27,7 +29,9 @@ export const Header = () => {
           <Link to="/list">List</Link>
         </LinkWrapper>
         <ButtonContainer>
+          <CustomIcon color="darkblue " icon={<HiOutlineMoon />}></CustomIcon>
           <ToggleButton onClick={handleClick} toggled={root} />
+          <CustomIcon color="gold" icon={<HiOutlineSun />}></CustomIcon>
         </ButtonContainer>
       </Container>
     </H>

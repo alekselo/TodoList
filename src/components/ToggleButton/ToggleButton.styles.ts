@@ -20,7 +20,7 @@ export const ToggleSpan = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background: #2c3e50;
+  background: darkblue;
   transition: 0.3s;
   border-radius: 30px;
 
@@ -31,13 +31,13 @@ export const ToggleSpan = styled.span`
     width: 25px;
     left: 3px;
     bottom: 2.6px;
-    background-color: #fff;
+    background-color: lightblue;
     border-radius: 50%;
     transition: 0.3s;
 }
 
 ${ToggleInput}:checked + & {
-  background-color: #00c853;
+  background-color: gold;
 
   &:before {
     transform: translateX(29px);
