@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Theme } from "../../models/Themes";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ theme: Theme }>`
     width: 100%;
     height: 80px;
 
@@ -8,7 +9,7 @@ export const Wrapper = styled.div`
     padding: 15px;
     z-index: 5;
 
-    background-color: #4682b4;
+    background-color: ${({ theme }) => theme.colors.backgroundPrimary};
     box-shadow: 0 2px 4px rgba(44, 62, 80, 0.15);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -32,7 +33,7 @@ export const Input = styled.input`
     box-shadow: none;
     outline: none;
 `
-export const Button = styled.button<{icon: string}>`
+export const Button = styled.button<{icon?: string}>`
     width: 50px;
     height: 50px;
     background: transparent url(${(props) => props.icon}) no-repeat center/cover;

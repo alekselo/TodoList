@@ -29,9 +29,17 @@ export const Header = () => {
           <Link to="/list">List</Link>
         </LinkWrapper>
         <ButtonContainer>
-          <CustomIcon color="darkblue " icon={<HiOutlineMoon />}></CustomIcon>
+          <CustomIcon
+            color="darkblue"
+            padding="10px"
+            icon={<HiOutlineMoon />}
+          ></CustomIcon>
           <ToggleButton onClick={handleClick} toggled={root} />
-          <CustomIcon color="gold" icon={<HiOutlineSun />}></CustomIcon>
+          <CustomIcon
+            color="gold"
+            padding="10px"
+            icon={<HiOutlineSun />}
+          ></CustomIcon>
         </ButtonContainer>
       </Container>
     </H>

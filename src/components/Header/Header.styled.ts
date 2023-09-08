@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { Theme } from "../../models/Themes";
 
-export const Header = styled.div`
+export const Header = styled.div<{ theme: Theme }>`
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     height: 50px;
-    background-color: #4682b4;
+    background-color: ${({ theme }) => theme.colors.backgroundPrimary};
     display: flex;
     align-items: center;
 `

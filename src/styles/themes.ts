@@ -3,15 +3,15 @@ import { Theme, Themes } from "../models/Themes";
 const light: Theme = {
     name: 'light',
     colors: {
-        backgroundPrimary: '#4682b4',
-        backgroundSecondary: 'rgb(237, 240, 241)'
+        backgroundPrimary: '#cf6679',
+        backgroundSecondary: '#018786'
     }
 }
 
 const dark: Theme = {
     name: 'dark',
     colors: {
-        backgroundPrimary: 'black',
+        backgroundPrimary: '#34495e',
         backgroundSecondary: 'gray'
     }
 }

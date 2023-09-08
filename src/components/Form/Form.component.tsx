@@ -12,7 +12,8 @@ import {
   Wrapper,
 } from "./Form.styled";
 
-import { IconPlus } from "../../assets/images/";
+import { HiPlusCircle } from "react-icons/hi";
+import CustomIcon from "../CustomIcon/CustomIcon.component";
 
 interface FormProps {
   createNewTodo: (text: string) => void;
@@ -62,7 +63,13 @@ export const Form: React.FC<FormProps> = ({ createNewTodo }) => {
               value={text}
               onChange={(e) => dispatch(setText(e.target.value))}
             />
-            <Button icon={IconPlus} />
+            <Button>
+              <CustomIcon
+                color="#309054"
+                size="38px"
+                icon={<HiPlusCircle />}
+              ></CustomIcon>
+            </Button>
           </Label>
         </FormBlock>
       </Wrapper>
