@@ -1,15 +1,17 @@
 import { createGlobalStyle } from "styled-components";
 import normalize from "styled-normalize";
+import { Theme } from "../models/Themes";
 
-export const GlobalStyle = createGlobalStyle`
-   ${normalize}
+export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
+    ${normalize}
 
     * {
         box-sizing: border-box;
     }
 
     body {
-        background-color: #edf0f1;
+        transition: background-color .2s;
+        background-color: ${({ theme }) => theme.colors.backgroundSecondary};
         padding: 50px 0 0 0;
         font-family: 'Roboto', sans-serif;
         font-size: 16px;
@@ -22,15 +24,5 @@ export const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         align-items: center;
         padding: 20px;
-    }
-
-    .btnBack {
-        border: 0;
-        border-radius: 5px;
-        background: #4676D7;
-        color: #fff;
-        padding: 8px 16px;
-        font-size: 16px;
-        cursor: pointer;
     }
 `;
