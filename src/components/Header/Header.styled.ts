@@ -20,6 +20,12 @@ export const Container = styled.div`
     justify-content: center;
 `
 
+export const LinkWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Link = styled(NavLink)`
     text-decoration: none;
     padding: 10px;
@@ -29,7 +35,10 @@ export const Link = styled(NavLink)`
         color: #ffffff33;
     }
 `
-
+export const ButtonContainer = styled.div`
+    position: absolute;
+    right: 30px;
+`;
 
 
 
