@@ -31,5 +31,5 @@ export const router = createBrowserRouter(
       element: <NotFountPage />,
     },
   ],
-  { basename: "/app/" }
+  { basename: "/TodoList" }
 );
