@@ -25,6 +25,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^9.0.1",
     "gh-pages": "^5.0.0",
